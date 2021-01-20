@@ -6,6 +6,7 @@ namespace SIAConsola
     {
         static void Main(string[] args)
         {
+            Filtro1 filtro1 = new Filtro1();
             Console.WriteLine("Hello World!");
         }
     }
