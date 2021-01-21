@@ -9,14 +9,15 @@ namespace SIAConsola
     class Filtro1
     {
         Datos.LogicaDatos datos = new Datos.LogicaDatos();
+        List<string> listaPlanes = new List<string>();
 
-        
-        public int getNivel(List<List<double>> kpa)
+
+        public int getNivel(List<List<double>> kpa, List<List<string>> listaEstrategia)
         {
             //List<List<double>> kpa = datos.LeerDatosFiltro(1);
             List<double> listaKpa = new List<double>();
             List<double> listaNiveles = new List<double>();
-            List<string> listaPlanes = new List<string>();
+            
             int nivel = 5,t=0,i=0;
           
             for(i = 0; i< kpa[0].Count; i++) //45 filas +/-
@@ -27,8 +28,8 @@ namespace SIAConsola
                     
                     if (((int)kpa[0][i] != (int)kpa[0][i - 1] && (int)kpa[3][i] == 0) || ((int)kpa[0][i] == (int)kpa[0][i - 1] && (int)kpa[2][i] != (int)kpa[2][i - 1] && (int)kpa[3][i] == 0) || ((int)kpa[0][i] == (int)kpa[0][i - 1] && (int)kpa[2][i] == (int)kpa[2][i - 1] && (int)kpa[3][i - 1] != 0)) {
 
-
-                        listaPlanes.Add(kpa[4][i]);
+                        listaPlanes.Add(listaEstrategia[0][i]);
+                        listaPlanes.Add(listaEstrategia[1][i]);
 
                     }
                     listaKpa.Add((int)kpa[2][i]);
@@ -91,46 +92,11 @@ namespace SIAConsola
 
             return puntajeTotal;
         }
-        public int getNivel2(List<List<double>> kpa)
+        
+
+        public List<string> getListaPlanes()
         {
-           
-            int nivel = 5;
-            int tarea = 1;
-            int nivelTarea=1;
-            int i;
-
-            for (i = 0; i < kpa[0].Count; i++) //45 filas +/-
-            {
-               
-                if ((int)kpa[3][i] == 0) // si no cumple la kpa
-                {
-                   
-                    if ((int)kpa[0][i]!= nivelTarea )
-                    {
-                        nivelTarea = (int)kpa[0][i];
-                        if ( (int)kpa[2][i] != tarea)
-                        {
-                            tarea = (int)kpa[2][i];
-                            Console.WriteLine("Plan de pruebas" + nivelTarea + "**" + tarea);
-                        }
-                                 
-
-                    }
-                    else
-                    {
-                        nivelTarea = (int)kpa[0][i];
-                        tarea = (int)kpa[2][i];
-                        Console.WriteLine("Plan de pruebas" + nivelTarea + "**" + tarea);
-                    }
-                    //Console.WriteLine(kpa[0][i]+" - " +kpa[2][i]);
-                    if ((int)kpa[0][i] < nivel) // si la kpa no cumplida, es menor a la var nivel , guarda el nivel no cumplido
-                    {
-                        nivel = (int)kpa[0][i] - 1;
-                    }
-                }
-
-            }
-            return nivel;
+            return this.listaPlanes;
         }
 
     }
