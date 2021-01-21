@@ -1,8 +1,15 @@
-<Project Sdk="Microsoft.NET.Sdk">
+﻿<Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
     <OutputType>Exe</OutputType>
     <TargetFramework>netcoreapp3.1</TargetFramework>
   </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="IronXL.Excel" Version="2020.12.2" />
+    <PackageReference Include="LinqToExcel" Version="1.11.0" />
+    <PackageReference Include="SpreadsheetLight" Version="3.5.0" />
+    <PackageReference Include="System.Linq" Version="4.3.0" />
+  </ItemGroup>
 
 </Project>
